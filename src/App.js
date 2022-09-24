@@ -1,24 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Aos from "aos";
+import 'aos/dist/aos.css';
+import {useEffect} from 'react';
+import Nav from './components/NavSideBar';
+import Favorite from './pages/favorite';
+import HomePage from './pages/homepage';
+import Login from './pages/login';
+import LoginAsAdmin from './pages/LoginAsAdmin';
+import Profile from './pages/Profile';
+import SignUp from './pages/SignUp';
+import Video from './pages/Video'
+import Footer from './components/Footer'
 function App() {
+  useEffect(function () {
+    Aos.init({ duration: 1200 });
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+   
+
+
+    <Router >     
+       <Nav />
+    <div className = 'py-[100px]  bg-gray-200'>
+     <Routes>
+     <Route path='' element={<HomePage />} />
+     <Route path='/login' element={<Login />} />
+     <Route path='/loginAdmin' element={<LoginAsAdmin />} />
+     <Route path='/favorite' element={<Favorite />} />
+     <Route path='/profile' element={<Profile />} />
+     <Route path='/sign-up' element={<SignUp />} />
+     <Route path="/video/:id" element= {<Video />} />
+     </Routes>
+   </div>
+    <Footer />
+   </Router>
+ 
   );
 }
 
